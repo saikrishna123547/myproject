@@ -1,0 +1,124 @@
+package com.filehandling;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+interface  Files {
+
+	abstract void Ascendingorder();
+
+	abstract void Add();
+
+	abstract void Delete();
+	
+	abstract void Search();
+	
+	abstract void Close();
+
+}
+class Subfiles implements Files
+{
+	Scanner input=new Scanner(System.in);
+
+
+@Override
+	public void Ascendingorder() {
+		// TODO Auto-generated method stub
+	File f=new File("c:\\dxc-data");
+	String[] s= f.list();
+	for(String s1:s)
+		System.out.println(s1);
+	}
+	@Override
+	public void Add() {
+		// TODO Auto-generated method stub
+		System.out.println("enter the file name do u want to add");
+		File f=new File("c:\\dxc-data",input.nextLine());
+		// f.createNewFile();
+		try {
+			if(f.createNewFile())
+				System.out.println("file created ");
+			else 
+				System.out.println("file already exists in the directory");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	@Override
+	public void Delete() {
+		// TODO Auto-generated method stub
+		System.out.println("enter the file name do u want to delete");
+		
+		File f1=new File("c:\\dxc-data",input.nextLine());
+		if(f1.delete())
+			System.out.println("file deleted"); 
+		else
+			System.out.println("File not found"); 
+		
+	}
+	@Override
+	public void Search() {
+		// TODO Auto-generated method stub
+		System.out.println("enter the file name do u want to search");
+		
+		  File f=new File("c:\\dxc-data",input.nextLine());
+			if(f.exists())
+				System.out.println("the file exists");
+			else 
+				System.out.println("File not found");
+	}
+	public void Close()
+	{
+		System.out.println("Application closed");
+	}
+		
+	}
+
+
+public class Project {
+	   public static void main(String[] args) {
+		   System.out.println("Welcome to Lockedme.com \nI am saikrishna guduru Full stack java developer in dxc technology");
+	while(true)
+	{
+		System.out.println("enter your choice ");
+		System.out.println("1.files come in ascending order \n2. business level operations \n    1. add file \n    2. delete file \n    3. search file \n3. close");    
+		 Scanner scan=new Scanner(System.in);
+		Subfiles obj=new Subfiles();
+		int num=scan.nextInt();
+		switch(num)
+		{
+			
+		case 1: 
+				System.out.println("you entered 1 so below  files  are in ascending order ");
+				obj.Ascendingorder();
+				break;
+				
+		case 2: 
+			System.out.println("enter your choice ");
+			int num1=scan.nextInt();
+			switch(num1)
+			{
+			case 1: obj.Add();
+					break;
+			case 2: obj.Delete();
+					break;
+			case 3: obj.Search();
+					break;
+			default: System.out.println("select a valid number");
+		    }
+			break;
+		
+		case 3:
+			obj.Close();
+			break;
+		default:System.out.println("select a valid number");
+		}
+		if(num==3)
+			break;
+		
+	}
+}
+}
+
